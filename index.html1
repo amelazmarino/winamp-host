@@ -4,23 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Winamp Player</title>
-    <script src="https://unpkg.com/webamp"></script>
 </head>
 <body>
+    <h1>Winamp Test</h1>
     <div id="winamp-container"></div>
+
+    <!-- Load Webamp.js dynamically -->
     <script>
-        const webamp = new Webamp({
-            initialTracks: [
-                {
-                    metaData: { artist: "Artist Name", title: "Song Title" },
-                    url: "https://your-mp3-url.mp3" // Replace with a real MP3 link
-                }
-            ],
-            initialSkin: {
-                url: "https://raw.githubusercontent.com/amelazmarino/winamp-host/main/Windows_9x.wsz"
+        function loadScript(url, callback) {
+            let script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = url;
+            script.onload = callback;
+            document.body.appendChild(script);
+        }
+
+        loadScript("https://unpkg.com/webamp", function () {
+            console.log("Webamp script loaded!");
+
+            if (typeof Webamp === "undefined") {
+                console.error("Webamp is still not defined.");
+                return;
             }
+
+            console.log("Webamp is now available.");
+            const webamp = new Webamp({
+                initialTracks: [],
+                initialSkin: {
+                    url: "https://raw.githubusercontent.com/amelazmarino/winamp-host/main/Windows_9x.wsz"
+                }
+            });
+
+            webamp.renderWhenReady(document.getElementById("winamp-container"));
         });
-        webamp.renderWhenReady(document.getElementById("winamp-container"));
     </script>
 </body>
 </html>
