@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winamp Player</title>
+    <script src="https://unpkg.com/webamp"></script>
+</head>
+<body>
+    <div id="winamp-container"></div>
+    <script>
+        const webamp = new Webamp({
+            initialTracks: [
+                {
+                    metaData: { artist: "Artist Name", title: "Song Title" },
+                    url: "https://your-mp3-url.mp3" // Replace with a real MP3 link
+                }
+            ],
+            initialSkin: {
+                url: "https://raw.githubusercontent.com/amelazmarino/winamp-host/main/Windows_9x.wsz
+"
+            }
+        });
+        webamp.renderWhenReady(document.getElementById("winamp-container"));
+    </script>
+</body>
+</html>
